@@ -44,7 +44,7 @@
                                 </router-link>
                             </td>
                             <td>{{ task.category.name }}</td>
-                            <td>{{ task.due_date }}</td>
+                            <td :class="{'text-warning' : task.is_almost_due, 'text-error' : task.is_due}">{{ task.due_date }}</td>
                             <td>{{ task.status }}</td>
                             <td>
                                 <v-menu bottom offset-y right nudge-right="20" min-width="150" :min-width="400">
@@ -86,6 +86,9 @@ const TASK_QUERY = gql`
       id
       name
     }
+    description
+    is_due
+    is_almost_due
     due_date
     status
     created_at
