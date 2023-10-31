@@ -20,5 +20,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Login
 
-email: test@example.com
-password: password
+ - email: test@example.com
+ - password: password
+
+### Back-end repo [here](https://github.com/chibyk101/task-manager)
+See front-end [Live demo](https://aptwi.schoolx.ng).
