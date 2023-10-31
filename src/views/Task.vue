@@ -124,7 +124,8 @@ export default {
             updateTask,
             refetch,
             onError,
-            isUpdating
+            isUpdating,
+            route
         }
     },
     methods: {
@@ -147,6 +148,7 @@ export default {
         },
         handleTaskUpdate() {
             this.updateTask({
+                id: this.route.params.id,
                 title: this.form.title,
                 due_date: this.form.due_date,
                 description: this.form.description,
@@ -154,7 +156,7 @@ export default {
             }).then((result) => {
                 if (result) {
                     if (result.errors) {
-
+                        console.log(result.errors);
                         this.errorMessage = result.errors[0].message
 
                     } else {
