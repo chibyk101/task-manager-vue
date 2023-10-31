@@ -61,6 +61,7 @@ const VIEW_TASK = gql`
         viewTask(id: $id){
         id
         title
+        description
         category{
         id
         name
