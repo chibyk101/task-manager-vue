@@ -42,7 +42,7 @@
                     </template>
                     <template #actions>
                         <v-spacer></v-spacer>
-                        <v-btn type="submit">submit</v-btn>
+                        <v-btn :loading="isUpdating" type="submit">submit</v-btn>
                     </template>
                 </v-card>
             </v-form>
@@ -105,7 +105,7 @@ export default {
             description: "",
             task_category_id: null
         })
-        const updateTask = useMutation(gql`
+        const {mutate: updateTask, loading: isUpdating} = useMutation(gql`
             mutation updateTask($id: ID!, $title: String, $description: String, $due_date: String, $task_category_id: Int){
                 updateTask(id: $id, title: $title, description: $description, due_date: $due_date, task_category_id: $task_category_id){
                         id
@@ -123,7 +123,8 @@ export default {
             categories,
             updateTask,
             refetch,
-            onError
+            onError,
+            isUpdating
         }
     },
     methods: {
@@ -145,8 +146,12 @@ export default {
                 })
         },
         handleTaskUpdate() {
-            this.form.task_category_id = Number(this.form.task_category_id)
-            this.updateTask.mutate(this.form).then((result) => {
+            this.updateTask({
+                title: this.form.title,
+                due_date: this.form.due_date,
+                description: this.form.description,
+                task_category_id: Number(this.form.task_category_id)
+            }).then((result) => {
                 if (result) {
                     if (result.errors) {
 
