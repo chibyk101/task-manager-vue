@@ -1,4 +1,4 @@
-# task-manager
+# task-manager (interview task)
 
 ## Project setup
 ```
